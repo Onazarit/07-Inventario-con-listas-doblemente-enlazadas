@@ -44,6 +44,10 @@ export default class Storage{
         if(id == this._inicio.getId()){
             elim = this._inicio;
             this._inicio = this._inicio.siguiente;
+            if(this._inicio != null){
+                this._inicio.anterior = null;
+                this._limite--;
+            }
             elim.siguiente = null;
             return(elim);
         }
@@ -52,7 +56,9 @@ export default class Storage{
             if(temp.siguiente.getId() == id){
                 elim = temp.siguiente;
                 temp.siguiente = temp.siguiente.siguiente;
+                temp.siguiente.siguiente.anterior = temp;
                 elim.siguiente = null;
+                elim.anterior = null;
             }
             else{
                 temp = temp.siguiente;
