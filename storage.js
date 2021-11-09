@@ -97,21 +97,19 @@ export default class Storage{
     }
 
     showAllInv(){
+        let temp = this._inicio;
+        let text = "";
         if(this._inicio == null){
-            return("");
+            return(text);
         }
-        else{
-            return(this._showAllInv(this._inicio));
+        while(temp.siguiente!=null){
+            temp = temp.siguiente;
         }
-    }
-
-    _showAllInv(n){
-        if(n.siguiente == null){
-            return(n.info());
+        while(temp!=null){
+            text += `${temp.info()}<br>`;
+            temp = temp.anterior;
         }
-        else{
-            return(this._showAllInv(n.siguiente) + "<br>" + n.info());
-        }
+        return text;
     }
 
 }
